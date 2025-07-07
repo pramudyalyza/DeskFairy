@@ -1,0 +1,194 @@
+fileName,abstract,clusterID,clusterName
+10.1162@necoa01199.pdf,"summary and discus-
+sion of future directions are in section 4.
+2 LSTM Cells and Their Variants
+In RNNs, the recurrent layers or hidden layers consist of recurrent cells
+whose states are affected by both past states and current input with feed-
+back connections. The recurrent layers can be organized in various archi-
+tecturestoformdifferentRNNs.Therefore,RNNsaremainlydistinguished
+bytherecurrentcellandnetworkarchitecture.Differentcellsandinnercon-
+nectionsenableRNNstopossessdifferentcapacities.InordertoexploretheAReview of Recurrent Neural Networks 1237
+Figure 1: Schematic of the standard recurrent sigma cell.
+developmentofLSTMnetworks,thissectionfirstgivesabriefreviewofthe
+LSTM cell and its variants.
+2.1 Standard Recurrent Cell.Usually RNNs are networks that consist
+ofstandardrecurrentcellssuchassigmacellsandtanhcells.Figure1shows
+a schematic of the standard recurrent sigma cell. The mathematical expres-
+sions of the standard recurrent sigma cell are written as follows:
+ht = σ(Whht−1 + Wxxt + b),
+yt = ht, (2.1)
+wherext,ht,and yt denotetheinput,therecurrentinformation,andtheout-
+putofthecellattime t,respectively; Wh andWx aretheweights;and bisthe
+bias.Standardrecurrentcellshaveachievedsomesuccessinsomeproblems
+(Karpathy, Johnson, & Li, 2015; Li, Li, Cook, Zhu, & Gao, 2018). However,
+the recurrent networks that consist of standard recurrent cells are not ca-
+pable of handling long-term dependencies: as the gap between the related
+inputs grows, it is difficult to learn the connection information. Hochreiter
+(1991) and Bengio, Simard, and Frasconi (1994) analyzed fundamental rea-
+sons for the long-term dependencies problem: error signals flowing back-
+ward in time tend to either blow up or vanish.
+2.2 LSTM. In order to deal with the problem of “long-term depen-
+dencies,” Hochreiter and Schmidhuber (1997) proposed the LSTM cell.
+Theyimproved the rememberingcapacityof the standardrecurrent cell by",2,Recurrent Neural Networks
+3744746.pdf,"ing with credit is permitted. To copy
+otherwise, or republish, to post on servers or to redistribute to lists, requires prior specific permission and/or a fee. Request permissions from
+permissions@acm.org.
+© 2025 Copyright held by the owner/author(s).
+ACM 2157-6912/2025/6-ART
+https://doi.org/10.1145/3744746
+ACM Trans. Intell. Syst. Technol.
+ 
+2 • Humza Naveed, Asad Ullah Khan, Shi Qiu, Muhammad Saqib, Saeed Anwar, Muhammad Usman, Naveed Akhtar, Nick Barnes,
+and Ajmal Mian
+Fig. 1. The trend of papers released over the years containing",0,Intelligent Systems
+akram2017.pdf,"Breast cancer remains a worldwide public health dilemma and is currently the most common tumour in the globe. 
+Awareness of breast cancer, public attentiveness, and advancement in breast imaging has made a positive impact 
+on recognition and screening of breast cancer. Breast cancer is life-threatening disease in females and the leading 
+cause of mortality among women population. For the previous two decades, studies related to the breast cancer 
+has guided to astonishing advancement in our understanding of the breast cancer, resulting in further proficient 
+treatments. Amongst all the malignant diseases, breast cancer is considered as one of the leading cause of death in 
+post menopausal women accounting for 23% of all cancer deaths. It is a global issue now, but still it is diagnosed in 
+their advanced stages due to the negligence of women regarding the self inspection and clinical examination of the 
+breast. This review addresses anatomy of the breast, risk factors, epidemiology of breast cancer, pathogenesis of breast 
+cancer, stages of breast cancer, diagnostic investigations and treatment including chemotherapy, surgery, targeted 
+therapies, hormone replacement therapy, radiation therapy, complementary therapies, gene therapy and stem-cell 
+therapy etc for breast cancer.",1,Breast Cancer
+ieee.pdf,"Neoadjuvant chemotherapy (NAC) has become the main treatment option for breast cancer.
+Its adverse drug reactions (ADRs) make NAC painful both physiologically and psychologically. The factor
+pathological complete remission (pCR) describes how well a series of six or more chemotherapeutic treat-
+ments works on a patient. This study investigated the possibility of predicting pCR using only the nodal sizes
+of the ﬁrst three treatments. A best feature combination for each breast cancer subtype was screened from the
+real nodal sizes of the ﬁrst three treatments and the nodal sizes‘ of the next three treatments predicted from
+those of the ﬁrst three ones. The prediction was evaluated by the metrics Avc =(sensitivity+speciﬁcity)/2.
+A triple-negative breast cancer (TN) patient may have an estimation of pCR Avc =0.8696 after taking just
+three treatments. At least Avc =0.7594 was achieved for all the four breast cancer subtypes investigated in
+this study.
+INDEX TERMS Pathological complete response (pCR), breast cancer, neoadjuvant chemotherapy,
+biomarker detection, feature selection.",1,Breast Cancer
+sherstinsky2020.pdf,"abstract form of the Additive
+ModelinEq.(4)hasbeenparticularizedinmanyways,including
+incorporatingtheeffectsofdelays,imposing‘‘shunting’’(or‘‘sat-
+urating’’)boundsonthestateofthesystem,andotherfactors.
+BiologicallymotivatedusesoftheAdditiveModelspancomputa-
+tionalanalysesofvision,decisionmaking,reinforcementlearning,
+sensory-motorcontrol,short-termandlong-termmemory,and
+thelearningoftemporalorderinlanguageandspeech[40].Ithas
+alsobeennotedthattheAdditiveModelgeneralizestheHopfield
+model [41], which, while rooted in biological plausibility, has
+been influential in physics and engineering [40,42]. In fact, a
+simplifiedanddiscretizedformoftheAdditiveModelplayeda
+keyroleinlinkingthenonlineardynamicalsystemsgoverning
+morphogenesis,oneofthefundamentalaspectsofdevelopmental
+biology,toageneralizedversionoftheHopfieldnetwork[41],and
+applyingittoanengineeringprobleminimageprocessing[4,43].
+ConsiderasaturatingAdditiveModelinEq.(4)withthethree
+constituentterms, ⃗a(t),⃗b(t),and ⃗c(t),definedasfollows:
+⃗a(t)=
+Ks−1∑
+k=0
+⃗ak(⃗s(t − τs(k))) (5)
+⃗b(t)=
+Kr −1∑
+k=0
+⃗bk(⃗r(t − τr (k))) (6)
+⃗r(t − τr (k))= G
+(⃗s(t − τr (k))
+)
+(7)
+⃗c(t)=
+Kx−1∑
+k=0
+⃗ck(⃗x(t − τx(k))) (8)
+where⃗r(t),thereadoutsignalvector,isawarpedversionofthe
+statesignalvector, ⃗s(t).Apopularchoicefortheelement-wise
+nonlinear,saturating,andinvertible‘‘warping’’(or‘‘activation’’)
+function, G(z), is an optionally scaled and/or shifted form of
+thehyperbolictangent.Thentheresultingsystem,obtainedby
+substitutingEqs.(5)–(8)intoEq.(4)andinsertingintoEq.(1),
+becomes:
+d⃗s(t)
+dt
+=
+Ks−1∑
+k=0
+⃗ak(⃗s(t − τs(k)))+
+Kr −1∑
+k=0
+⃗bk(⃗r(t − τr (k)))
++
+Kx−1∑
+k=0
+⃗ck(⃗x(t − τx(k)))+ ⃗φ (9)
+⃗r(t − τr (k))= G
+(⃗s(t − τr (k))
+)
+(10)
+Eq.(9)isanonlinearordinarydelaydifferentialequation(DDE)
+withdiscretedelays.Delayisacommonfeatureofmanypro-
+cesses in biology, chemistry, mechanics, physics, ecology, and
+physiology,amongothers,wherebythenatureoftheprocesses
+dictatestheuseofdelayequationsastheonlyappropriatemeans
+ofmodeling.Inengineering,timedelaysoftenariseinfeedback
+loopsinvolvingsensorsandactuators[44].
+Hence,thetimerateofchangeofthestatesignalinEq.(9)
+depends on three main components plusthe constant (‘‘bias’’)
+term, ⃗φ.Thefirst(‘‘analog’’)component,
+∑Ks−1
+k=0 ⃗ak(⃗s(t − τs(k))),
+isthecombinationofupto Ks time-shifted(bythedelaytime
+constants,τs(k))functions, ⃗ak(⃗s(t)),wheretheterm‘‘analog’’un-
+derscoresthefactthateach ⃗ak(⃗s(t))isafunctionofthe(possibly
+time-shifted)statesignalitself(i.e.,notthereadoutsignal,which
+isthewarpedversionofthestatesignal).Thesecondcomponent,∑Kr −1
+k=0
+⃗bk(⃗r(t −τr (k))),isthecombinationofupto Kr time-shifted
+(by the delay time constants,τr (k)) functions,⃗bk(⃗r(t)), of the
+readoutsignal,givenbyEq.(10),thewarped(binary-valuedin
+theextreme)versionofthestatesignal.Thethirdcomponent,∑Kx−1
+k=0 ⃗ck(⃗x(t − τx(k))),representingtheexternalinput,iscom-
+posedofthecombinationofupto Kx time-shifted(bythedelay
+timeconstants, τx(k))functions, ⃗ck(⃗x(t)),oftheinputsignal. 3
+Therationalebehindchoosingaformofthehyperbolictan-
+gentasthewarpingfunctionisthatthehyperbolictangentpos-
+sessescertainusefulproperties.Ononehand,itismonotonicand
+negative-symmetricwithaquasi-linearregion,whoseslopecan
+beregulated[45].Ontheotherhand,itisbipolarly-saturating
+(i.e., bounded at both the negative and the positive limits of
+its domain). The quasi-linear mode aides in the design of the
+system’sparametersandininterpretingitsbehaviorinthe‘‘small
+signal’’regime(i.e.,when
+⃗s(t)
+ ≪ 1).Thebipolarly-saturating
+(‘‘squashing’’)aspect,alongwiththeproperdesignoftheinternal
+parametersofthefunctions ⃗ak(⃗s(t))and ⃗bk(⃗r(t)),helpstokeepthe
+stateofthesystem(and,hence,itsoutput)bounded.Thedynamic
+rangeofthestatesignalsisgenerallyunrestricted,butthereadout
+signals are guaranteed to be bounded, while still carrying the
+stateinformationwithlowdistortioninthequasi-linearmodeof
+thewarpingfunction(the‘‘smallsignal’’regime).Ifthesystem,
+describedbyEqs.(9)and(10),isstable,thenthestatesignalsare
+boundedaswell[46].
+Eq. (9) is a nonlinear ordinary delay differential equation
+(DDE)withdiscretedelays.Delayisacommonfeatureofmany
+processesinbiology,chemistry,mechanics,physics,ecology,and
+physiology,amongothers,wherebythenatureoftheprocesses
+dictatestheuseofdelayequationsastheonlyappropriatemeans
+ofmodeling.Inengineering,timedelaysoftenariseinfeedback
+loopsinvolvingsensorsandactuators[44].
+ThetimedelaytermsontherighthandsideofEq.(9)comprise
+the‘‘memory’’aspectsofthesystem.Theyenablethequantity
+holdingtheinstantaneoustimerateofchangeofthestatesignal,
+d⃗s(t)
+dt ,toincorporatecontributionsfromthestate,thereadout,and
+theinputsignalvalues,measuredatdifferentpointsintime,rela-
+tivetothecurrenttime, t.Qualitatively,thesetemporalelements
+enrich the expressive power of the model by capturing causal
+and/orcontextualinformation.
+Inneuralnetworks,thetimedelayisanintrinsicpartofthe
+systemandalsooneofthekeyfactorsthatdeterminesthedy-
+namics.4Muchofthepioneeringresearchinrecurrentnetworks
+3 The entire input signal,⃗c(t), in Eq. (8) is sometimes referred to as the
+‘‘externaldrivingforce’’(or,simply,the‘‘drivingforce’’)inphysics.
+4 Inneuralnetworks,timedelayoccursintheinteractionbetweenneurons;
+itisinducedbythefiniteswitchingspeedoftheneuronandthecommunication
+timebetweenneurons[44,47].",2,Recurrent Neural Networks
