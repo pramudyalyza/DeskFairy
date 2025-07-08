@@ -2,9 +2,10 @@ import os
 import pypdf
 import logging
 import pandas as pd
-import ollama
+import google.generativeai as genai
 
 from tqdm import tqdm
+from dotenv import load_dotenv
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
 from sentence_transformers import SentenceTransformer
@@ -108,30 +109,22 @@ def find_optimal_clusters(embeddings, max_k=10):
         logging.warning("Could not determine optimal K. Defaulting to 3 clusters")
         return min(3, len(embeddings) -1) if len(embeddings) > 1 else 1
     
-def generate_cluster_name(abstracts_sample, model_name):
+def generate_cluster_name(abstracts_sample, model):
 
     prompt = f"""
-    Based on the following research paper abstracts, suggest 1 very short, descriptive topic name (e.g., "Deep Learning", "Graph Neural Networks", "Computational Fluid Dynamics").
-    Return only the name itself, without any extra text or quotation marks.
+    Based on the following research paper abstracts, suggest 1  very short, descriptive topic names (e.g., "Deep Learning", "Graph Neural Networks", "Computational Fluid Dynamics").
+    Return only the name.
 
     Abstracts:
     {'- ' + ' - '.join(abstracts_sample)}
     """
     try:
-        response = ollama.chat(
-            model=model_name,
-            messages=[
-                {
-                    "role": "user",
-                    "content": prompt,
-                },
-            ],
-        )
-        cluster_name = response["message"]["content"].strip().replace('"', "")
+        response = model.generate_content(prompt)
+        cluster_name = response.text.strip().replace('"', '')
         logging.info(f"Generated cluster name: {cluster_name}")
         return cluster_name
     except Exception as e:
-        logging.error(f"Error generating cluster name with Ollama: {e}")
+        logging.error(f"Error generating cluster name with Gemini: {e}")
         return "Unknown Topic"
 
 def main():
@@ -141,7 +134,12 @@ def main():
     OUTPUT_CSV_PATH = "data/paper_data.csv"
     MIN_PDFS_REQUIRED = 5
 
-    LLM_MODEL = "llama3.2"
+    MODEL_NAME = "gemini-2.5-flash-preview-05-20"
+
+    load_dotenv()
+    GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
+    genai.configure(api_key=GEMINI_API_KEY)
+
     os.makedirs("data", exist_ok=True)
 
     pdf_files = [f for f in os.listdir(DESKTOP_PATH) if f.lower().endswith(".pdf")]
@@ -160,6 +158,14 @@ def main():
             logging.info("SentenceTransformer model loaded successfully")
         except Exception as e:
             logging.error(f"Failed to load SentenceTransformer model: {e}")
+            exit()
+        
+        # Load Gemini model
+        try:
+            gemini_model = genai.GenerativeModel(MODEL_NAME)
+            logging.info(f"Gemini model '{MODEL_NAME}' initialized successfully")
+        except Exception as e:
+            logging.error(f"Failed to initialize Gemini model: {e}")
             exit()
         
     # Extract Abstracts
@@ -191,7 +197,7 @@ def main():
     if num_clusters <= 1:
         logging.info("Not enough data to form multiple clusters or optimal K is 1. All papers will be in a single cluster")
         df['clusterID'] = 0
-        df['clusterName'] = generate_cluster_name(df['abstract'].sample(min(3, len(df))).tolist(), LLM_MODEL)
+        df['clusterName'] = generate_cluster_name(df['abstract'].sample(min(3, len(df))).tolist(), gemini_model)
     else:
         kmeans = KMeans(n_clusters=num_clusters, random_state=42, n_init='auto')
         df['clusterID'] = kmeans.fit_predict(abstract_embeddings)
@@ -203,7 +209,7 @@ def main():
         for cluster_id in sorted(df['clusterID'].unique()):
             cluster_abstracts = df[df['clusterID'] == cluster_id]['abstract'].tolist()
             sample_abstracts = cluster_abstracts[:min(3, len(cluster_abstracts))]
-            name = generate_cluster_name(sample_abstracts, LLM_MODEL)
+            name = generate_cluster_name(sample_abstracts, gemini_model)
             cluster_names[cluster_id] = name
         df['clusterName'] = df['clusterID'].map(cluster_names)
         logging.info("Cluster names generated")

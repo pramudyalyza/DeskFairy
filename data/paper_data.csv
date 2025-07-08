@@ -29,7 +29,7 @@ sons for the long-term dependencies problem: error signals flowing back-
 ward in time tend to either blow up or vanish.
 2.2 LSTM. In order to deal with the problem of “long-term depen-
 dencies,” Hochreiter and Schmidhuber (1997) proposed the LSTM cell.
-Theyimproved the rememberingcapacityof the standardrecurrent cell by",2,Recurrent Neural Networks
+Theyimproved the rememberingcapacityof the standardrecurrent cell by",2,LSTM Cells
 3744746.pdf,"ing with credit is permitted. To copy
 otherwise, or republish, to post on servers or to redistribute to lists, requires prior specific permission and/or a fee. Request permissions from
 permissions@acm.org.
@@ -40,7 +40,7 @@ ACM Trans. Intell. Syst. Technol.
  
 2 • Humza Naveed, Asad Ullah Khan, Shi Qiu, Muhammad Saqib, Saeed Anwar, Muhammad Usman, Naveed Akhtar, Nick Barnes,
 and Ajmal Mian
-Fig. 1. The trend of papers released over the years containing",0,Intelligent Systems
+Fig. 1. The trend of papers released over the years containing",0,Trends in Academic Publishing
 akram2017.pdf,"Breast cancer remains a worldwide public health dilemma and is currently the most common tumour in the globe. 
 Awareness of breast cancer, public attentiveness, and advancement in breast imaging has made a positive impact 
 on recognition and screening of breast cancer. Breast cancer is life-threatening disease in females and the leading 
@@ -52,7 +52,7 @@ their advanced stages due to the negligence of women regarding the self inspecti
 breast. This review addresses anatomy of the breast, risk factors, epidemiology of breast cancer, pathogenesis of breast 
 cancer, stages of breast cancer, diagnostic investigations and treatment including chemotherapy, surgery, targeted 
 therapies, hormone replacement therapy, radiation therapy, complementary therapies, gene therapy and stem-cell 
-therapy etc for breast cancer.",1,Breast Cancer
+therapy etc for breast cancer.",1,Breast Cancer Research
 ieee.pdf,"Neoadjuvant chemotherapy (NAC) has become the main treatment option for breast cancer.
 Its adverse drug reactions (ADRs) make NAC painful both physiologically and psychologically. The factor
 pathological complete remission (pCR) describes how well a series of six or more chemotherapeutic treat-
@@ -64,7 +64,7 @@ A triple-negative breast cancer (TN) patient may have an estimation of pCR Avc =
 three treatments. At least Avc =0.7594 was achieved for all the four breast cancer subtypes investigated in
 this study.
 INDEX TERMS Pathological complete response (pCR), breast cancer, neoadjuvant chemotherapy,
-biomarker detection, feature selection.",1,Breast Cancer
+biomarker detection, feature selection.",1,Breast Cancer Research
 sherstinsky2020.pdf,"abstract form of the Additive
 ModelinEq.(4)hasbeenparticularizedinmanyways,including
 incorporatingtheeffectsofdelays,imposing‘‘shunting’’(or‘‘sat-
@@ -191,4 +191,4 @@ namics.4Muchofthepioneeringresearchinrecurrentnetworks
 ‘‘externaldrivingforce’’(or,simply,the‘‘drivingforce’’)inphysics.
 4 Inneuralnetworks,timedelayoccursintheinteractionbetweenneurons;
 itisinducedbythefiniteswitchingspeedoftheneuronandthecommunication
-timebetweenneurons[44,47].",2,Recurrent Neural Networks
+timebetweenneurons[44,47].",2,LSTM Cells
